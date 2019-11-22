@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+# on:
+#  push:
+#    # Sequence of patterns matched against refs/heads
+#    branches:    
+#      - master         # Push events on master branch
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: Cutting new staging from master
+    - name: Cutting new staging from master
+      if: github.ref == 'refs/heads/master' && success()
+      uses: srt32/git-actions@v0.0.3
+      env:
+        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+        GITHUB_USER: $GITHUB_ACTOR
+      with:
+        args: git branch -D staging && git checkout master && git push origin staging
