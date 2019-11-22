@@ -1,3 +1,5 @@
+PELE
+
 Python Testing Example: pytest
 ==============================
 This example is part of the
