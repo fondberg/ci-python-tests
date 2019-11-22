@@ -1,5 +1,7 @@
 Python Testing Example: pytest
 ==============================
+NIKLAS
+
 This example is part of the
 [Python Testing 101 series](https://automationpanda.com/2017/03/06/python-testing-101-introduction/)
 from [Automation Panda](https://automationpanda.com/).
