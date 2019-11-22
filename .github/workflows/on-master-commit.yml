@@ -1,4 +1,4 @@
-name: CI
+name: Cut new staging branch from master
 
 on: [push]
 # on:
@@ -14,11 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      if: github.ref == 'refs/heads/master' && success()
     - name: fetch all
+      if: github.ref == 'refs/heads/master' && success()
       run: |
           echo "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
-          git fetch --all && git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
           git fetch origin && git checkout master && git pull origin master && git branch -D staging && git checkout -b staging && git push -f github staging
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_PAT }}
