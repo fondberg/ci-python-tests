@@ -14,8 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo "Cutting new staging from master"
+    - name: fetch all
+      run: git fetch --all && git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
     - name: Cutting new staging from master
       if: github.ref == 'refs/heads/master' && success()
       uses: srt32/git-actions@v0.0.3
@@ -23,4 +23,4 @@ jobs:
         GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
         GITHUB_USER: $GITHUB_ACTOR
       with:
-        args: git fetch --all && git fetch origin && git checkout master && git branch -D staging && git pull origin master && git checkout -b staging && git push -f origin staging
+        args: git fetch origin && git checkout master && git branch -D staging && git pull origin master && git checkout -b staging && git push -f origin staging
