@@ -33,7 +33,7 @@ def test_multiply():
 
 def test_divide():
     value = divide(NUMBER_1, NUMBER_2)
-    assert value == 1.5
+    assert value == 1.4
 
 
 # Test for dividing by zero catches the exception
