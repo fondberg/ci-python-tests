@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
-      run: Cutting new staging from master
+      run: echo "Cutting new staging from master"
     - name: Cutting new staging from master
       if: github.ref == 'refs/heads/master' && success()
       uses: srt32/git-actions@v0.0.3
