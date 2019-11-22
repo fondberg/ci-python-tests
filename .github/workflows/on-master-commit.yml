@@ -23,4 +23,4 @@ jobs:
         GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
         GITHUB_USER: $GITHUB_ACTOR
       with:
-        args: git branch -D staging && git checkout master && git pull origin master && git branch -b staging && git push origin staging
+        args: git checkout master && git branch -D staging && git pull origin master && git checkout -b staging && git push -f origin staging
